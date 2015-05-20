@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/jquery-ui.min.css">
+	
+    <script src="js/jquery-1.11.2.js"></script>
+    <script src="js/jqueryui/jquery-ui.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/datepicker/jquery-ui.multidatespicker.js"></script>
+    
+</head>
+	<div class="contain-fluid">
+		<div class="row" id="header">
+			<div class="col-md-12" id="divTitle">
+				<p id="title"></p>
+			</div>
+		</div>
+		<div class="row" id="body">
+			<div class="col-md-2" id="leftContent"></div>
+			<div class="col-md-8" id="midContent">
+				<div class="row" id="div-form">
+					<form class="form-horizontal" id="divForm1">
+						<div class="form-group">
+						    <label for="inputTitle" class="col-sm-2 control-label">Title</label>
+						    <div class="col-sm-10">
+						      	<input type="text" class="form-control" id="inputTitle" placeholder="Title">
+						      	<p class="bg-danger inputErr" id="emailErr">...</p>
+						    </div>
+						</div>
+						<div class="form-group">
+						    <label for="inputLocation" class="col-sm-2 control-label">Location(option)</label>
+						    <div class="col-sm-10">
+						      	<input type="email" class="form-control" id="inputLocation" placeholder="Location">
+						    	<p class="bg-danger inputErr" id="locationErr">...</p>
+						    </div>
+						</div>
+						<div class="form-group">
+						    <label for="inputDescription" class="col-sm-2 control-label">Description (optional)</label>
+						    <div class="col-sm-10">
+						      	<input type="text" class="form-control" id="inputDescription" placeholder="Description">
+						    	<p class="bg-danger inputErr" id="descriptionErr">...</p>
+						    </div>
+						</div>
+						<div class="form-group">
+						    <label for="inputName" class="col-sm-2 control-label">Your name</label>
+						    <div class="col-sm-10">
+						      	<input type="text" class="form-control" id="inputName" placeholder="Your name">
+						    	<p class="bg-danger inputErr" id="nameErr">...</p>
+						    </div>
+						</div>
+						<div class="form-group">
+						    <label for="inputEmail" class="col-sm-2 control-label">Email address</label>
+						    <div class="col-sm-10">
+						      	<input type="email" class="form-control" id="inputEmail" placeholder="Email address">
+						      	<p class="bg-danger inputErr" id="emailErr">...</p>
+						      	<p class="help-block">You will receive the link to administer your poll at the address. This will NOT automatically open any Doodle account.</p>
+						    </div>
+						</div>
+						<div class="form-group">
+						    <div class="col-sm-offset-2 col-sm-10">
+						      	<button type="back" class="btn btn-default btn-back" id="btn-back-1" disabled="disabled">Back</button>
+						      	<button type="next" class="btn btn-default btn-primary btn-next" id="btn-next-1">Next</button>
+						    </div>
+					  	</div>
+					</form>
+					<div id="datePicker">
+						
+					</div>
+				</div>
+				<div class="row" id="divForm-2"></div>
+				<div class="row" id="divForm-3"></div>
+				<div class="row" id="divForm-4"></div>
+			</div>
+			<div class="col-md-2" id="rightContent"></div>
+		</div>
+		<div class="row" id="footer">
+			<div class="col-md-12" id="divFooter"></div>
+		</div>
+	</div>
+
+
+
+<body>
+	
+</body>
+
