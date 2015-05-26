@@ -1,4 +1,72 @@
+#header {
+	height: 200px;
+}
+
 .inputErr {
 	margin-top: 10px;
+}
+.text-primary {
+	
+}
+.text-primary:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
 
+.formStep {
+	border: 1px black solid;
+	padding-left: 15px;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	padding-right: 15px;
+}
+
+.button-form {
+	margin-top: 40px;
+}
+
+.none-display {
+	display: none!important;
+}
+
+#dateErr {
+	margin-top: 10px;
+}
+
+.pOut {
+	display: table-cell;
+	vertical-align: middle;
+}
+.dateRow:hover {
+	background-color: #bcddeb;
+	border-radius: 10px;	
+}
+
+.dateP {
+	margin-top: 10px;
+}
+.dateTrash {
+	margin-top: 10px;
+	opacity: 0.5;
+}
+.dateTrash:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+
+.container {
+	width: auto;
+}
+
+#divForm2-2 {
+	min-width: 863px!important;
+	display: inline-block;
+}
+
+#firstCl {
+	min-width: 100px!important;
+}
+
+td {
+	padding: 2px 5px;
 }

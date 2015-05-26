@@ -7,13 +7,13 @@
 	<link rel="stylesheet" href="css/jquery-ui.min.css">
 	
     <script src="js/jquery-1.11.2.js"></script>
-    <script src="js/jqueryui/jquery-ui.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/bootstrap.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/datepicker/jquery-ui.multidatespicker.js"></script>
+    <script src="js/jquery-ui.multidatespicker.js"></script>
     
 </head>
-	<div class="contain-fluid">
+	<div class="">
 		<div class="row" id="header">
 			<div class="col-md-12" id="divTitle">
 				<p id="title"></p>
@@ -23,40 +23,41 @@
 			<div class="col-md-2" id="leftContent"></div>
 			<div class="col-md-8" id="midContent">
 				<div class="row" id="div-form">
-					<form class="form-horizontal" id="divForm1">
+					<!-- form1 -->
+					<form class="form-horizontal formStep" id="divForm1">
 						<div class="form-group">
 						    <label for="inputTitle" class="col-sm-2 control-label">Title</label>
 						    <div class="col-sm-10">
 						      	<input type="text" class="form-control" id="inputTitle" placeholder="Title">
-						      	<p class="bg-danger inputErr" id="emailErr">...</p>
+						      	<p class="bg-danger inputErr" id="titleErr"></p>
 						    </div>
 						</div>
 						<div class="form-group">
 						    <label for="inputLocation" class="col-sm-2 control-label">Location(option)</label>
 						    <div class="col-sm-10">
-						      	<input type="email" class="form-control" id="inputLocation" placeholder="Location">
-						    	<p class="bg-danger inputErr" id="locationErr">...</p>
+						      	<input type="text" class="form-control" id="inputLocation" placeholder="Location">
+						    	<p class="bg-danger inputErr" id="locationErr"></p>
 						    </div>
 						</div>
 						<div class="form-group">
 						    <label for="inputDescription" class="col-sm-2 control-label">Description (optional)</label>
 						    <div class="col-sm-10">
 						      	<input type="text" class="form-control" id="inputDescription" placeholder="Description">
-						    	<p class="bg-danger inputErr" id="descriptionErr">...</p>
+						    	<p class="bg-danger inputErr" id="descriptionErr"></p>
 						    </div>
 						</div>
 						<div class="form-group">
 						    <label for="inputName" class="col-sm-2 control-label">Your name</label>
 						    <div class="col-sm-10">
 						      	<input type="text" class="form-control" id="inputName" placeholder="Your name">
-						    	<p class="bg-danger inputErr" id="nameErr">...</p>
+						    	<p class="bg-danger inputErr" id="nameErr"></p>
 						    </div>
 						</div>
 						<div class="form-group">
 						    <label for="inputEmail" class="col-sm-2 control-label">Email address</label>
 						    <div class="col-sm-10">
 						      	<input type="email" class="form-control" id="inputEmail" placeholder="Email address">
-						      	<p class="bg-danger inputErr" id="emailErr">...</p>
+						      	<p class="bg-danger inputErr" id="emailErr"></p>
 						      	<p class="help-block">You will receive the link to administer your poll at the address. This will NOT automatically open any Doodle account.</p>
 						    </div>
 						</div>
@@ -67,8 +68,149 @@
 						    </div>
 					  	</div>
 					</form>
-					<div id="datePicker">
-						
+					<!-- form2-1 date -->
+					<div class=" formStep" id="divForm2-1">
+						<div class="row">
+							<div class="col-md-12">
+								<h2>Date proposals</h2>
+								<p>Select multiple dates or date ranges</p>
+							</div>
+
+						</div>
+						<div id="dateProposal" class="row">
+							<div class="col-md-5" id="datePicker"></div>
+							<div class="col-md-6" id="dateSelected">
+								<div class="contain-fluid">
+									<div class="row">
+										<p class="col-md-12">Selected dates:</p>
+									</div>
+									<div class="contain-fluid" id="datesSelectedDiv">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<p class="bg-danger inputErr" id="dateErr"></p>
+							</div>
+						</div>
+						<div class="form-group row button-form">
+						    <div class="col-sm-12">
+						      	<button type="back" class="btn btn-default btn-back" id="btn-back-2-1">Back</button>
+						      	<button type="next" class="btn btn-default btn-primary btn-next" id="btn-next-2-1">Next</button>
+						    </div>
+					  	</div>
+					</div>
+					<!-- form2-2 Time -->
+					<div class=" formStep" id="divForm2-2">
+						<div class="row">
+							<div class="col-md-12">
+								<h2>Time proposals</h2>
+								<p>Enter any number of time proposals for each day</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12" id="timeProposal">
+								<table id="tableTime">
+									<tr id="rowTitle">
+										<td id="firstCl"></td>
+										<td>Time 1</td>
+										<td>Time 2</td>
+										<td>Time 3</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<p>
+									<a class="text-primary text-nowrap" id="addTimeSlot">Add further time slots</a>
+								</p>
+								<p>
+									<a class="text-primary">Copy and paste first row</a>
+								</p>
+							</div>
+						</div>
+						<div class="form-group row button-form">
+						    <div class="col-md-12">
+						      	<button type="back" class="btn btn-default btn-back" id="btn-back-2-2">Back</button>
+						      	<button type="next" class="btn btn-default btn-primary btn-next" id="btn-next-2-2">Next</button>
+						    </div>
+					  	</div>
+					</div>
+					<!-- form3 Setting-->
+					<div class=" formStep" id="divForm3">
+						<div class="row">
+							<img src="" alt="" class="img-rounded col-md-2">
+							<div class="col-md-10">
+								<div class="contain-fluid">
+									<div class="row">
+										<h2 class="col-md-12">Basic Poll</h2>
+									</div>
+									<div class="row">
+										<p class="col-md-12">For a basic poll you can just skip this step, otherwise choose from the settings below.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group button-form row">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="back" class="btn btn-default btn-back"id="btn-back-3-1">Back</button>
+							   	<button type="next" class="btn btn-default btn-primary btn-next" id="btn-next-3-1">Next</button>
+							</div>
+						</div>
+						<div class="row">
+							<img src="" alt="" class="img-rounded col-md-2">
+							<div class="col-md-10">
+								<div class="contain-fluid">
+									<div class="row">
+										<h2 class="col-md-12">Setting</h2>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<p>Yes-No-Ifneedbe, Hidden poll, Limits and Extra fields</p>
+											<div class="checkbox">
+												<label>
+												    <input type="checkbox" value=""><b>Yes&dash;No&dash;Ifneedbe poll</b>
+												    <p>Additional ifneedbe answer for busy participants.</p>
+												</label>
+											</div>
+											<div class="checkbox">
+												<label>
+													<input type="checkbox" value=""><b>Hidden poll</b>
+												    <p>Confidential participation: Only you can see the answers.</p>
+												</label>
+											</div>
+											<div class="checkbox">
+												<label>
+													<input type="checkbox" value=""><b>Participant can only choose one option</b>
+												    <p>By default all options are selectable. This setting limits the choice to one option per participant.</p>
+												</label>
+											</div>
+											<div class="checkbox">
+												<label>
+													<input type="checkbox" value=""><b>Limit the number of participants per option</b>
+												    <p>Poll as registration form: As soon as the indicated limit has been reached, the respective option is no longer available.</p>
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="row button-form form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="back" class="btn btn-default btn-back" id="btn-back-3-2">Back</button>
+				      			<button type="next" class="btn btn-default btn-primary btn-next" id="btn-next-3-2">Next</button>
+							</div>
+						</div>
+					</div>
+					<!-- form4 Invite -->
+					<div class="contain-fluid formStep" id="divForm4>">
+						<div class="row">
+						</div>
+						<div class="row"></div>
 					</div>
 				</div>
 				<div class="row" id="divForm-2"></div>
