@@ -55,6 +55,7 @@ $(document).ready(function () {
     			break;
     		case 1: checkForm2();
     			break;
+            case 2: 
     	}
     });
 
@@ -149,6 +150,7 @@ $(document).ready(function () {
             if (date == dateSelected[i]) {
                 console.log("Date is exist!");
                 removeDateSelected(date);
+                removeDateForm22(date);
                 return;
             }
         }
@@ -163,9 +165,11 @@ $(document).ready(function () {
         newElement.find('.dateTrash').on("click", function (e, ui) {
             var dateDelete = new Date($(this).parent().find('.dateP').text());
             removeDateSelected($(this).parent().find('.dateP').text());
+            removeDateForm22($(this).parent().find('.dateP').text());
         })
     }
 
+    /*remove date selected form 2-1*/
     function removeDateSelected(date) {
         console.log("Delete date selected");
 
@@ -194,51 +198,89 @@ $(document).ready(function () {
                 }
             }
             if (!exist) {
-                text += "<tr id='rowDate" + i + "'>" +
+                text = "<tr class='rowDate'>" +
                             "<td>" +
                                 "<div class='divDateTrash'>" + 
                                     "<span class='dateTrash trashForm22 glyphicon glyphicon-trash' aria-hidden='true' style='display: inline-block;'></span>" +
                                     "<p class='dateP' style='display: inline-block; margin-left: 5px;'>" + dateSelected[i] + "</p>" +
                                 "</div>" + 
                             "</td>" +
-                            "<td><input type='text'></td>" +
-                            "<td><input type='text'></td>" +
-                            "<td><input type='text'></td>" +
+                            "<td><input type='text' class='inputTime'></td>" +
+                            "<td><input type='text' class='inputTime'></td>" +
+                            "<td><input type='text' class='inputTime'></td>" +
                         "</tr>";    
+                var newElement = $(text);
+                $('#tableTime').append(newElement);
+                $(newElement).find('.dateTrash').on("click", function (e, ui) {
+                    console.log("click delete date");
+                    var dateDelete = ($(this).parent().find('.dateP').text());
+                    removeDateForm22(dateDelete);//form 2-2
+                    removeDateSelected(dateDelete);//form 2-1
+                    if (dateSelected.length == 0) {
+                        displayNextForm(false);
+                        resetTimeSlots();
+                    }
+                })
+
             }
         }
-        var newElement = $(text);
-        $('#tableTime').append(newElement);
-        var dateTrash = $('#tableTime').find('.dateTrash');
-        $('.trashForm22').on("click", function (e, ui) {
-            var dateDelete = ($(this).parent().find('.dateP').text());
-            for (var j = 0; j < dateSelected.length; j++) {
-                if (dateSelected[j] == dateDelete) {
-                    var trElement = document.getElementById("rowDate" + j);
-                    $(trElement).remove();
-                    break;
-                }
+    }
+    /*remove date select form 2-2*/
+    function removeDateForm22(date) {
+        var rowDate = $('.rowDate');
+        for (var j = 0; j < rowDate.length; j++) {
+            if ($(rowDate[j]).find('.dateP').text() == date) {
+                $(rowDate[j]).remove();
             }
-            removeDateSelected(dateDelete);
-            if (dateSelected.length == 0) {
-                displayNextForm(false);
-            }
-        });
+        }
     }
 
+    function resetTimeSlots() {
+        console.log("reset number of time slots");
+        var timeSlots = $('#rowTitle').find('td');
+        console.log(timeSlots.length);
+        for (var i = 0; i < timeSlots.length; i++) {
+            if (i > 3) $(timeSlots[i]).remove();
+        }
+        numberOfTimeSlot = 3;
+    }
+
+    /*Add time slot: one slot each click event*/
     $('#addTimeSlot').on("click", function (e, ui) {
         console.log("Add time slots");
         numberOfTimeSlot++;
-        var text = "<td><input type='text'></td>";
-        var newElement = document.createElement('td');
-        $(newElement).text("Time " + numberOfTimeSlot);
-        $('#rowTitle').append(newElement);
-        // $('#rowTitle').append($("<td>Time " + numberOfTimeSlot + "</td>"));
-        for (var i = 0; i < dateSelected.length; i++) {
-            var rowElement = document.getElementById("rowDate" + i);
-            $(rowElement).append($(text));
+        var text = "<td><input type='text' class='inputTime'></td>";
+        $('#rowTitle').append($("<td>Time " + numberOfTimeSlot + "</td>"));
+        var rowDate = $('.rowDate');
+        for (var i = 0; i < rowDate.length; i++) {
+            $(rowDate[i]).append($(text));
         }
     });
+
+    /*Copy time data from first row*/
+    $("#copyFromFirstRow").on("click", function (e, ui) {
+        console.log("Copy time");
+        /*Get data from first row*/
+        var rowDate = $('.rowDate');
+        var copyData = [];
+        var timesRow = $(rowDate[0]).find('.inputTime');
+        for (var i = 0; i < timesRow.length; i++) {
+            copyData.push($(timesRow[i]).val());
+        }
+        for (var i = 1; i < rowDate.length; i++) {
+            timesRow = $(rowDate[i]).find('.inputTime');
+            for (var j = 0; j < timesRow.length; j++ ) {
+                $(timesRow[j]).val(copyData[j]);
+            }
+        }
+    })
+
+    /*Format time input when fill*/
+
+    function formatTime() {
+        
+    }
+
 
 
 
