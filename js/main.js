@@ -143,6 +143,7 @@ $(document).ready(function () {
 
     function startInterface() {
     	$(".formStep:not(#divForm1)").addClass("none-display");
+        $('#inputLimitNumber').parent().addClass("none-display");
     }
 
     /*
@@ -417,6 +418,27 @@ $(document).ready(function () {
             $('#toggleSetting').removeClass("glyphicon-chevron-up");
             $('#toggleSetting').addClass("glyphicon-chevron-down");    
         }
+    });
+
+    $('#ifNeedbe').click(function() {
+        if (this.checked) {
+            $('#participant').attr("disabled", "disabled");
+            $('#limitNumber').attr("disabled", "disabled");
+            $('#limitNumber').attr("checked", false);
+            $('#inputLimitNumber').parent().addClass("none-display");
+        }
+        else {
+            $('#participant').removeAttr("disabled", "disabled");
+            $('#limitNumber').removeAttr("disabled", "disabled");
+        }
+    })
+
+    $('#limitNumber').on("click", function (e, ui) {
+        console.log("inputLimitNumber");
+        if (this.checked)
+            $('#inputLimitNumber').parent().removeClass("none-display");
+        else 
+            $('#inputLimitNumber').parent().addClass("none-display");
     })
 
 

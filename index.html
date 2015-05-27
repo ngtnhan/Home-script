@@ -175,29 +175,35 @@
 								<div class="row">
 										<div class="col-md-12">
 											<p>Yes-No-Ifneedbe, Hidden poll, Limits and Extra fields</p>
-											<div class="checkbox">
+											<div class="checkbox" id="ifNeedbeDiv">
 												<label>
 												    <input id="ifNeedbe" type="checkbox" value=""><b>Yes&dash;No&dash;Ifneedbe poll</b>
 												    <p>Additional ifneedbe answer for busy participants.</p>
 												</label>
 											</div>
-											<div class="checkbox">
+											<div class="checkbox" id="hiddenDiv">
 												<label>
 													<input id="hidden" type="checkbox" value=""><b>Hidden poll</b>
 												    <p>Confidential participation: Only you can see the answers.</p>
 												</label>
 											</div>
-											<div class="checkbox">
+											<div class="checkbox" id="participantDiv">
 												<label>
 													<input id="participant" type="checkbox" value=""><b>Participant can only choose one option</b>
 												    <p>By default all options are selectable. This setting limits the choice to one option per participant.</p>
 												</label>
 											</div>
-											<div class="checkbox">
+											<div class="checkbox" id="limitNumberDiv">
 												<label>
 													<input id="limitNumber" type="checkbox" value=""><b>Limit the number of participants per option</b>
 												    <p>Poll as registration form: As soon as the indicated limit has been reached, the respective option is no longer available.</p>
 												</label>
+												<form class="form-inline">
+													<div class="form-group">
+	    												<label for="inputLimitNumber">Participants</label>
+	    												<input type="text" class="form-control" id="inputLimitNumber">
+	  												</div>
+  												</form>
 											</div>
 										</div>
 									</div>
