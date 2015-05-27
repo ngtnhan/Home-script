@@ -31,7 +31,8 @@ $(document).ready(function () {
     		basicPoll: false,
     		checkbox1: false,
     		checkbox2: false,
-    		checkbox3: false
+    		checkbox3: false,
+            checkbox4: false
     	}
     }
 
@@ -55,7 +56,10 @@ $(document).ready(function () {
     			break;
     		case 1: checkForm2();
     			break;
-            case 2: 
+            case 2: collectTime();
+                break;
+            case 3: checkbox();
+                break;
     	}
     });
 
@@ -74,6 +78,10 @@ $(document).ready(function () {
     	else current--;
         if (current == 2) {
             generateForm2();
+        }
+        if (current == 3) {
+            $('#toggleSetting').addClass("glyphicon-chevron-down");
+            $('#checkboxTable').addClass("none-display");
         }
     	currentForm = document.getElementById(FORM_ARRAY[current].idForm);
     	$('.inputErr').html('');
@@ -204,11 +212,11 @@ $(document).ready(function () {
                                     "<span class='dateTrash trashForm22 glyphicon glyphicon-trash' aria-hidden='true' style='display: inline-block;'></span>" +
                                     "<p class='dateP' style='display: inline-block; margin-left: 5px;'>" + dateSelected[i] + "</p>" +
                                 "</div>" + 
-                            "</td>" +
-                            "<td><input type='text' class='inputTime'></td>" +
-                            "<td><input type='text' class='inputTime'></td>" +
-                            "<td><input type='text' class='inputTime'></td>" +
-                        "</tr>";    
+                            "</td>";
+                for (var u = 0; u < numberOfTimeSlot; u++) {
+                    text += "<td class='tdInput'><input type='text' class='inputTime'></td>";
+                }
+                text += "</tr>";    
                 var newElement = $(text);
                 $('#tableTime').append(newElement);
                 $(newElement).find('.dateTrash').on("click", function (e, ui) {
@@ -249,7 +257,7 @@ $(document).ready(function () {
     $('#addTimeSlot').on("click", function (e, ui) {
         console.log("Add time slots");
         numberOfTimeSlot++;
-        var text = "<td><input type='text' class='inputTime'></td>";
+        var text = "<td class='tdInput'><input type='text' class='inputTime'></td>";
         $('#rowTitle').append($("<td>Time " + numberOfTimeSlot + "</td>"));
         var rowDate = $('.rowDate');
         for (var i = 0; i < rowDate.length; i++) {
@@ -275,13 +283,141 @@ $(document).ready(function () {
         }
     })
 
-    /*Format time input when fill*/
+    /*Event when input time*/
+    $(document).on("focusout", "td.tdInput .inputTime", function (e) {
+        console.log('input');
+        var target = $(e.target);
+        var timeFormat = formatTime($(target).val());
+        $(target).val(timeFormat);
+    });
 
-    function formatTime() {
-        
+    /*Format time input when fill*/
+    function formatTime(time) {
+        console.log("Format time");
+        input = time.replace(/ /g , "");
+        input = input.toUpperCase();
+        var timeFormat;
+        var hour, minute, half;
+        var currentChar = 0;
+        if ($.isNumeric(input)) {
+            hour = parseInt(input);
+            minute = "00";
+        }
+        else {
+            for (var i = 0; i < input.length; i++) {
+                if (!($.isNumeric(input[i]))) {
+                    if (input[i] != ':') {
+                        if (((input[i] == 'A')||(input[i] == 'P'))
+                            &&(input[i+1] == 'M')
+                            &&(i == input.length - 2)) {
+                            half = input[i] + input[i + 1];
+                            input = input.slice(0, i);
+                            break;
+                        }
+                        else {
+                            return time;
+                        }
+                    }
+                }
+            }
+            console.log(input); 
+            var array = input.split(":");           
+            if (array.length == 2) {
+                if (($.isNumeric(array[0]))&&($.isNumeric(array[1]))) {
+                    hour = parseInt(array[0]);
+                    minute = (array[1]);
+                }
+                else return time;
+            }
+            else if (array.length == 1) {
+                if ($.isNumeric(array[0])) {
+                    hour = parseInt(array[0]);
+                    minute = "00";
+                }
+                else return time;
+            }
+            else return time;
+        }
+        if (half == undefined) {
+            if ((hour > 0) && (hour < 8)) {
+                half = "PM";
+            }
+            else if ((hour >= 8) && (hour < 12)) {
+                half = "AM";
+            }
+            else if ((hour < 24) && (hour > 12)) {
+                hour -= 12;
+                half = "PM";
+            }
+            else if ((hour == 0) || (hour == 24)) {
+                hour = 12;
+                half = "AM";
+            }
+            else if (hour == 12) {
+                half = "PM";
+            }
+            else return time;
+        }
+        timeFormat = hour + ":" + minute + " " + half;
+        return timeFormat;
     }
 
+    /*collect times in form 2-2*/
+    function collectTime() {
+        console.log("Collect time");
+        var timeRows = $('#tableTime').find('.rowDate');
+        console.log(timeRows.length);
+        for (var i = 0; i < timeRows.length; i++) {
+            var data = [];
+            data.push($(timeRows[i]).find('.dateP').text());
+            var inputElements = $(timeRows[i]).find('.inputTime');
+            for (var j = 0; j < inputElements.length; j++) {
+                data.push($(inputElements[j]).val());
+            }
+            dataForm.form2.push(data);
+        }
+        displayNextForm(true);
+    }
 
+    /*Checkbox in form 3*/
+    function checkbox() {
+        var checked = false;
+        if ($('#ifNeedbe').is(':checked')) {
+            dataForm.form3.checkbox1 = true;
+            checked = true;
+        }
+        if ($('#hidden').is(':checked')) {
+            dataForm.form3.checkbox2 = true;
+            checked = true;
+        }
+        if ($('#participant').is(':checked')) {
+            dataForm.form3.checkbox3 = true;
+            checked = true;
+        }
+        if ($('#limitNumber').is(':checked')) {
+            dataForm.form3.checkbox4 = true;
+            checked = true;
+        }
+
+        if (!checked) {
+            dataForm.form3.basicPoll = true;
+        }
+        console.log(dataForm);
+        displayNextForm(true);
+    }
+
+    $('#toggleSetting').on("click", function (e, ui) {
+        if ($('#checkboxTable').hasClass("none-display")) {
+            $('#checkboxTable').removeClass("none-display");
+            $('#toggleSetting').removeClass("glyphicon-chevron-down");
+            $('#toggleSetting').addClass("glyphicon-chevron-up");
+        }
+        else {
+            $('#checkboxTable').addClass("none-display");
+            $('#toggleSetting').removeClass("glyphicon-chevron-up");
+            $('#toggleSetting').addClass("glyphicon-chevron-down");    
+        }
+    })
 
 
 })

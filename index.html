@@ -141,7 +141,7 @@
 					<!-- form3 Setting-->
 					<div class=" formStep" id="divForm3">
 						<div class="row">
-							<img src="" alt="" class="img-rounded col-md-2">
+							<img src="css/images/poll.png" alt="" class="img-rounded col-md-1" id="pollImg">
 							<div class="col-md-10">
 								<div class="contain-fluid">
 									<div class="row">
@@ -154,53 +154,57 @@
 							</div>
 						</div>
 						<div class="form-group button-form row">
-							<div class="col-sm-offset-2 col-sm-10">
+							<div class="col-sm-offset-1 col-sm-10">
 								<button type="back" class="btn btn-default btn-back"id="btn-back-3-1">Back</button>
 							   	<button type="next" class="btn btn-default btn-primary btn-next" id="btn-next-3-1">Next</button>
 							</div>
 						</div>
 						<div class="row">
-							<img src="" alt="" class="img-rounded col-md-2">
+							<img src="css/images/setting.png" alt="" class="img-rounded col-md-1" id="settingImg">
 							<div class="col-md-10">
-								<div class="contain-fluid">
-									<div class="row">
-										<h2 class="col-md-12">Setting</h2>
-									</div>
-									<div class="row">
+								<h2 class="" style="display: inline-block;">
+									Setting
+								</h2>
+								<span id="toggleSetting" class="glyphicon" aria-hidden="true" style="display: inline-block;">
+								</span>
+								<p class="help-block" style="display: inline-block">(option)</p>
+							</div>
+						</div>
+						<div class="row" id="checkboxTable">
+							<div class="col-md-10 col-md-offset-2">
+								<div class="row">
 										<div class="col-md-12">
 											<p>Yes-No-Ifneedbe, Hidden poll, Limits and Extra fields</p>
 											<div class="checkbox">
 												<label>
-												    <input type="checkbox" value=""><b>Yes&dash;No&dash;Ifneedbe poll</b>
+												    <input id="ifNeedbe" type="checkbox" value=""><b>Yes&dash;No&dash;Ifneedbe poll</b>
 												    <p>Additional ifneedbe answer for busy participants.</p>
 												</label>
 											</div>
 											<div class="checkbox">
 												<label>
-													<input type="checkbox" value=""><b>Hidden poll</b>
+													<input id="hidden" type="checkbox" value=""><b>Hidden poll</b>
 												    <p>Confidential participation: Only you can see the answers.</p>
 												</label>
 											</div>
 											<div class="checkbox">
 												<label>
-													<input type="checkbox" value=""><b>Participant can only choose one option</b>
+													<input id="participant" type="checkbox" value=""><b>Participant can only choose one option</b>
 												    <p>By default all options are selectable. This setting limits the choice to one option per participant.</p>
 												</label>
 											</div>
 											<div class="checkbox">
 												<label>
-													<input type="checkbox" value=""><b>Limit the number of participants per option</b>
+													<input id="limitNumber" type="checkbox" value=""><b>Limit the number of participants per option</b>
 												    <p>Poll as registration form: As soon as the indicated limit has been reached, the respective option is no longer available.</p>
 												</label>
 											</div>
 										</div>
 									</div>
-								</div>
-
 							</div>
 						</div>
 						<div class="row button-form form-group">
-							<div class="col-sm-offset-2 col-sm-10">
+							<div class="col-sm-offset-1 col-sm-10">
 								<button type="back" class="btn btn-default btn-back" id="btn-back-3-2">Back</button>
 				      			<button type="next" class="btn btn-default btn-primary btn-next" id="btn-next-3-2">Next</button>
 							</div>

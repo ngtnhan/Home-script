@@ -70,3 +70,19 @@
 td {
 	padding: 2px 5px;
 }
+
+#toggleSetting {
+	margin: 0px 5px;
+}
+
+#toggleSetting:hover {
+	cursor: pointer;
+}
+
+#settingImg {
+	margin-top: 15px;
+}
+
+#pollImg {
+	margin-top: 15px;
+}
